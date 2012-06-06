@@ -29,10 +29,13 @@ function! s:find_all_settings()
 endfunction
 
 function! s:Projects()
-    let l:all_settings = s:find_all_settings()
+    let all_settings = s:find_all_settings()
+    let projects = []
 
-    for setting in l:all_settings:
-        echo fnamemodify(setting, ':t')
+    for setting in all_settings
+        let name = fnamemodify(fnamemodify(setting, ':h'), ':t')
+        call add(projects, name)
     endfor
-
 endfunction
+
+call s:Projects()
