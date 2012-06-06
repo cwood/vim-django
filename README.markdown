@@ -1,3 +1,6 @@
+ALPHA
+================================
+
 Django Vim
 -------------------------------
 This is a vim plugin to make working with Django bangin`!
