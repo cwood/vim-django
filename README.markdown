@@ -12,3 +12,7 @@ Goals
 - Should work with virtualenvs
  * See https://github.com/jmcantrell/vim-virtualenv for setting up vim with
    virtualenvs
+
+Versions
+---------------------------------
+I am to have this work with 2.6/2.7
