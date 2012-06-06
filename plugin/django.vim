@@ -24,18 +24,24 @@ if !isdirectory(g:django_projects)
     finish
 endif
 
-function! s:find_all_settings()
-    return split(globpath(g:django_projects, '**/settings.py'))
+function! s:Find_all_settings()
 endfunction
 
-function! s:Projects()
-    let all_settings = s:find_all_settings()
-    let projects = []
-
-    for setting in all_settings
-        let name = fnamemodify(fnamemodify(setting, ':h'), ':t')
-        call add(projects, name)
-    endfor
+function! s:ProjectsComplete(A,L,P)
+    let file_regex = a:A.'**/settings.py'
+    return split(fnamemodify(globpath(g:django_projects, file_regex), ':h:t'))
 endfunction
 
-call s:Projects()
+function! s:Django_Workon(project)
+    echom a:project
+endfunction
+
+function! django#Workon(project)
+    return s:Django_Workon(a:project)
+endfunction
+
+function! django#ProjectsComplete(A,L,P)
+    return s:ProjectsComplete(a:A, a:L, a:P)
+endfunction
+
+command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActivate call django#Workon(<q-args>)
