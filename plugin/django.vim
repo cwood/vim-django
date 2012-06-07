@@ -27,16 +27,24 @@ if !isdirectory(g:django_projects)
 endif
 
 function! s:ProjectsComplete(arg_lead, ...)
-    " TODO: Should be able to detech wich project is a django project
-    " Currently this search through all the projects. Since I use
-    " a project as a whole this becomes an issue of searching through
-    " the virutalenv too.
 
     let file_regex = '**/settings.py'
-    if !exists('l:all_projects')
-        let all_projects = split(fnamemodify(globpath(g:django_projects, file_regex), ':h:t'))
+    let arg_regex = 'v:val =~ '.a:arg_lead
 
-    return filter(all_projects, 'v:val =~ ^'.a:arg_lead)
+    let all_settings_files = split(globpath(g:django_projects, file_regex))
+
+    let all_projects = []
+
+    for setting_file in all_settings_files
+        let project = fnamemodify(setting_file, ':h:t')
+        call add(all_projects, project)
+    endfor
+
+    if !arg_regex
+        return all_projects
+    endif
+
+    return filter(copy(all_projects), arg_regex)
 endfunction
 
 function! s:Django_Workon(project)
@@ -50,8 +58,7 @@ endfunction
 function! django#ProjectsComplete(arg_lead, ...)
     " Dont really need the rest of the args since I only need
     " the lead most character
-    return s:ProjectsComplete(a:*)
+    return s:ProjectsComplete(a:arg_lead)
 endfunction
 
 command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActivate call django#Workon(<q-args>)
-command! -nargs=0 -bang DjangoProjectsUpdate call django#ProjectsComplete(<q-args> <bang>)
