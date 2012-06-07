@@ -52,7 +52,6 @@ function! s:Django_Workon(project)
     let file_regex = '**/'.a:project.'/settings.py'
     let file = globpath(g:django_projects, file_regex)
     let directory = fnamemodify(file, ':h:h')
-    echo directory
     let env_module  = a:project.".settings"
 
 python << EOF
