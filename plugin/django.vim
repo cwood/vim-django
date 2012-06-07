@@ -44,8 +44,6 @@ function! s:ProjectsComplete(arg_lead, ...)
         return all_projects
     endif
 
-    echo arg_regex
-
     return filter(copy(all_projects), arg_regex)
 endfunction
 
