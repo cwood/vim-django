@@ -27,6 +27,7 @@ if !isdirectory(g:django_projects)
 endif
 
 function! s:ProjectsComplete(arg_lead, ...)
+    " TODO: Make me faster!
     let file_regex = '**/settings.py'
     let arg_regex = 'v:val =~ "'.a:arg_lead.'"'
 
