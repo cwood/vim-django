@@ -29,7 +29,7 @@ endif
 function! s:ProjectsComplete(arg_lead, ...)
 
     let file_regex = '**/settings.py'
-    let arg_regex = 'v:val =~ '.a:arg_lead
+    let arg_regex = 'v:val =~ "'.a:arg_lead.'"'
 
     let all_settings_files = split(globpath(g:django_projects, file_regex))
 
@@ -40,9 +40,11 @@ function! s:ProjectsComplete(arg_lead, ...)
         call add(all_projects, project)
     endfor
 
-    if !arg_regex
+    if a:arg_lead == ''
         return all_projects
     endif
+
+    echo arg_regex
 
     return filter(copy(all_projects), arg_regex)
 endfunction
