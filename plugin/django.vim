@@ -27,7 +27,6 @@ if !isdirectory(g:django_projects)
 endif
 
 function! s:ProjectsComplete(arg_lead, ...)
-
     let file_regex = '**/settings.py'
     let arg_regex = 'v:val =~ "'.a:arg_lead.'"'
 
@@ -51,16 +50,19 @@ function! s:Django_Workon(project)
 
     let file_regex = '**/'.a:project.'/settings.py'
     let file = globpath(g:django_projects, file_regex)
-    let directory = fnamemodify(file, ':h')
+    let directory = fnamemodify(file, ':h:h')
+    echo directory
     let env_module  = a:project.".settings"
 
 python << EOF
 import vim
 import sys
 import os
+
 os.environ['DJANGO_SETTINGS_MODULE'] = vim.eval('env_module')
 directory = vim.eval('directory')
 sys.path.append(directory)
+
 EOF
 
 endfunction
