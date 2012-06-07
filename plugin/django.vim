@@ -50,7 +50,19 @@ function! s:ProjectsComplete(arg_lead, ...)
 endfunction
 
 function! s:Django_Workon(project)
-    echom a:project
+    let file_regex = '**/'.a:project.'/settings.py'
+    let file = globpath(g:django_projects, file_regex)
+    let directory = fnamemodify(file, ':h')
+
+    let $DJANGO_SETTINGS_FILE  = a:project.".settings"
+
+python << EOF
+import vim
+import sys
+directory = vim.eval('directory')
+sys.path.append(directory)
+EOF
+
 endfunction
 
 function! django#Workon(project)
