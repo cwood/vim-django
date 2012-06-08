@@ -1,21 +1,24 @@
-ALPHA
-================================
-
 Django Vim
--------------------------------
-This is a vim plugin to make working with Django bangin`!
+===============================================================================
 
-Goals
--------------------------------
-- Setup projects ``DJANGO_SETTINGS_MODULE`` via wildmenu
- * so that omnicomplete will work and have access to all of django
- * can write other plugins for django + VIM
-- Wrap manage.py and make accessing standard methods easy
- * Should be able to access, ``syncdb``, ``collectstatic``, and others ...
-- Should work with virtualenvs
- * See https://github.com/jmcantrell/vim-virtualenv for setting up vim with
-   virtualenvs
+Django vim wrappes the manage.py and will allow vim to work with youre project.
 
-Versions
----------------------------------
-I am to have this work with 2.6/2.7
+Commands
+-------------------------------------------------------------------------------
+
+``DjManage`` will run the managment command for the project
+
+``DjangoProjectActivate`` will activate the project. This will go through
+your ``g:django_projects`` and find all the django projects. It will also
+set up ``DJANGO_SETTINGS_MODULE`` in youre enviroment and the directory
+where the settings file is stored in your ``PYTHONPATH``.
+
+
+Configuration
+-------------------------------------------------------------------------------
+
+``g:django_projects`` is where youre django projects are located.
+
+``g:project_apps`` is where apps are created by default. This is still left
+to do. The idea is when ``DjManage createapp killerapp`` it will create it
+in your preferred directory.
