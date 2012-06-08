@@ -51,7 +51,7 @@ function! s:Django_Workon(project)
 
     let file_regex = '**/'.a:project.'/settings.py'
     let file = globpath(g:django_projects, file_regex)
-    let directory = fnamemodify(file, ':h:h')
+    let g:project_directory = fnamemodify(file, ':h:h')
     let env_module  = a:project.".settings"
 
 python << EOF
@@ -60,11 +60,10 @@ import sys
 import os
 
 os.environ['DJANGO_SETTINGS_MODULE'] = vim.eval('env_module')
-directory = vim.eval('directory')
+directory = vim.eval('g:project_directory')
 sys.path.append(directory)
 
 EOF
-
 endfunction
 
 function! django#Workon(project)
@@ -78,3 +77,32 @@ function! django#ProjectsComplete(arg_lead, ...)
 endfunction
 
 command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActivate call django#Workon(<q-args>)
+
+function! s:GetProjectCommands(prefix, ...)
+python << EOF
+from django.core.management import get_commands
+prefix = vim.eval('a:prefix')
+commands = list(get_commands())
+
+if prefix:
+    commands = [command for command in commands if command.startswith(prefix)]
+
+vim.command('return '+str(commands))
+EOF
+endfunction
+
+function! s:DjangoManage(command, ...)
+    let file_regex = '**/manage.py'
+    let manage = globpath(g:project_directory, file_regex)
+    echo system('python '.manage.' '.a:command)
+endfunction
+
+function! django#ManageCommandsComplete(arg_lead, ...)
+    return s:GetProjectCommands(a:arg_lead)
+endfunction
+
+function! django#Manage(command)
+    call s:DjangoManage(a:command)
+endfunction
+
+command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjManage call django#Manage(<q-args>)
