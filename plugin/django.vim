@@ -97,7 +97,7 @@ endfunction
 function! s:DjangoManage(command, ...)
     let file_regex = '**/manage.py'
     let manage = split(globpath(g:project_directory, file_regex))[0]
-    echo system('python '.manage.'  '.a:command)
+    :execute '!python '.manage.'  '.a:command
 endfunction
 
 function! django#ManageCommandsComplete(arg_lead, ...)
