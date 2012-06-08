@@ -38,7 +38,7 @@ Screen shots
 
 
 FAQ
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------------------------------
 
 * Working with virtualenv's
     I actully reccomend installing [vim-virtualenv](https://github.com/jmcantrell/vim-virtualenv)
