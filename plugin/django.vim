@@ -1,6 +1,12 @@
 " django.vim
 " Maintainer: Colin Wood <cwood06@gmail.com>
 " Version: 0.0.1a
+"
+if exists("g:django_loaded")
+    finish
+endif
+
+let g:django_loaded = 1
 
 if !has('python')
     echoerr "This script wont work without Python. Please compile with it."
