@@ -77,8 +77,6 @@ function! django#ProjectsComplete(arg_lead, ...)
     return s:ProjectsComplete(a:arg_lead)
 endfunction
 
-command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActivate call django#Workon(<q-args>)
-
 function! s:GetProjectCommands(prefix, ...)
 python << EOF
 from django.core.management import get_commands
@@ -109,3 +107,4 @@ function! django#Manage(command)
 endfunction
 
 command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjManage call django#Manage(<q-args>)
+command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActivate call django#Workon(<q-args>)
