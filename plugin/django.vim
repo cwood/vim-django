@@ -2,11 +2,6 @@
 " Maintainer: Colin Wood <cwood06@gmail.com>
 " Version: 0.0.1a
 "
-if exists("g:django_loaded")
-    finish
-endif
-
-let g:django_loaded = 1
 
 if !has('python')
     echoerr "This script wont work without Python. Please compile with it."
@@ -87,6 +82,9 @@ command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActi
 function! s:GetProjectCommands(prefix, ...)
 python << EOF
 from django.core.management import get_commands
+from django.conf import settings
+
+print settings.INSTALLED_APPS
 prefix = vim.eval('a:prefix')
 commands = list(get_commands())
 
@@ -99,8 +97,8 @@ endfunction
 
 function! s:DjangoManage(command, ...)
     let file_regex = '**/manage.py'
-    let manage = globpath(g:project_directory, file_regex)
-    echo system('python '.manage.' '.a:command)
+    let manage = split(globpath(g:project_directory, file_regex))[0]
+    echo system('python '.manage.'  '.a:command)
 endfunction
 
 function! django#ManageCommandsComplete(arg_lead, ...)
