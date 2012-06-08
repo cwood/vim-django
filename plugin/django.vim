@@ -91,6 +91,26 @@ vim.command('return '+str(commands))
 EOF
 endfunction
 
+function! s:DjangoTemplateFinder(template_name, ...)
+python << EOF
+from django.template.loaders.app_directories import Loader, app_template_dirs
+import os
+template_name = vim.eval('a:template_name')
+filepaths = Loader().get_template_sources(prefix, app_template_dirs)
+for filepath in filepaths:
+    if os.path.exists(filepath):
+        vim.command('return'+str(filepath))
+        break
+EOF
+endfunction
+
+function! s:GetInstalledApps(prefix, ...)
+python << EOF
+from django.conf import settings
+vim.command('return '+str(settings.INSTALLED_APPS))
+EOF
+endfunction
+
 function! s:DjangoManage(command, ...)
     let file_regex = '**/manage.py'
     let manage = split(globpath(g:project_directory, file_regex))[0]
@@ -105,5 +125,14 @@ function! django#Manage(command)
     call s:DjangoManage(a:command)
 endfunction
 
-command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjManage call django#Manage(<q-args>)
+function! django#InstalledApps(arg_lead, ...)
+    return s:GetInstalledApps(a:arg_lead)
+endfunction
+
+function! django#GetTemplate(template)
+    return s:DjangoTemplateFinder(a:template)
+endfunction
+
+command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjangoManage call django#Manage(<q-args>)
 command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActivate call django#Workon(<q-args>)
+command! -complete=customlist,django#InstalledApps DjangoApps echo <q-args>
