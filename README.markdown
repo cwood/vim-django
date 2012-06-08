@@ -35,3 +35,10 @@ Screen shots
 -------------------------------------------------------------------------------
 
 ![Mangement Command](http://i.imgur.com/WWEy9.png)
+
+
+FAQ
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Working with virtualenv's
+    I actully reccomend installing [vim-virtualenv](https://github.com/jmcantrell/vim-virtualenv)
