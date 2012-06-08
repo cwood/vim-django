@@ -1,30 +1,37 @@
 Django Vim
 ===============================================================================
 
-Django vim wrappes the manage.py and will allow vim to work with youre project.
+Django vim wraps the manage.py and will allow vim to work with your project.
 
 Commands
 -------------------------------------------------------------------------------
 
-``DjManage`` will run the managment command for the project
+``DjManage`` will run the management command for the project
 
 ``DjangoProjectActivate`` will activate the project. This will go through
 your ``g:django_projects`` and find all the django projects. It will also
-set up ``DJANGO_SETTINGS_MODULE`` in youre enviroment and the directory
+set up ``DJANGO_SETTINGS_MODULE`` in your environment and the directory
 where the settings file is stored in your ``PYTHONPATH``.
 
 
 Configuration
 -------------------------------------------------------------------------------
 
-``g:django_projects`` is where youre django projects are located.
+``g:django_projects`` is where your django projects are located.
 
 ``g:project_apps`` is where apps are created by default. This is still left
 to do. The idea is when ``DjManage createapp killerapp`` it will create it
 in your preferred directory.
 
 
-Screenshots
-------------------------------------------------------------------------------
+Installing
+-------------------------------------------------------------------------------
+
+I recommend using pathogen or vundle to install this script. Else, you can
+put the ``django.vim`` in the plug-ins directory. This script does require
+python to be compiled in.
+
+Screen shots
+-------------------------------------------------------------------------------
 
 ![Mangement Command](http://i.imgur.com/WWEy9.png)
