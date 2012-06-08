@@ -1,7 +1,7 @@
-" django.vim
+" django.vim - A bangin' interface for ViM and Django
 " Maintainer: Colin Wood <cwood06@gmail.com>
 " Version: 0.0.1a
-"
+" License: Same as ViM. see http://www.gnu.org/licenses/vim-license.txt
 
 if !has('python')
     echoerr "This script wont work without Python. Please compile with it."
@@ -96,7 +96,7 @@ python << EOF
 from django.template.loaders.app_directories import Loader, app_template_dirs
 import os
 template_name = vim.eval('a:template_name')
-filepaths = Loader().get_template_sources(prefix, app_template_dirs)
+filepaths = Loader().get_template_sources(template_name, app_template_dirs)
 for filepath in filepaths:
     if os.path.exists(filepath):
         vim.command('return'+str(filepath))
