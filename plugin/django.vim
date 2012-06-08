@@ -84,7 +84,6 @@ python << EOF
 from django.core.management import get_commands
 from django.conf import settings
 
-print settings.INSTALLED_APPS
 prefix = vim.eval('a:prefix')
 commands = list(get_commands())
 
