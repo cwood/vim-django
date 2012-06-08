@@ -6,12 +6,18 @@ Django vim wraps the manage.py and will allow vim to work with your project.
 Commands
 -------------------------------------------------------------------------------
 
-``DjManage`` will run the management command for the project
+``DjangoManage`` will run the management command for the project
 
 ``DjangoProjectActivate`` will activate the project. This will go through
 your ``g:django_projects`` and find all the django projects. It will also
 set up ``DJANGO_SETTINGS_MODULE`` in your environment and the directory
 where the settings file is stored in your ``PYTHONPATH``.
+
+
+Mappings
+-------------------------------------------------------------------------------
+
+TODO
 
 
 Configuration
@@ -41,4 +47,4 @@ FAQ
 ------------------------------------------------------------------------------
 
 * Working with virtualenv's
-    I actully reccomend installing [vim-virtualenv](https://github.com/jmcantrell/vim-virtualenv)
+    * I actully reccomend installing [vim-virtualenv](https://github.com/jmcantrell/vim-virtualenv)
