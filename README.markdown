@@ -22,3 +22,9 @@ Configuration
 ``g:project_apps`` is where apps are created by default. This is still left
 to do. The idea is when ``DjManage createapp killerapp`` it will create it
 in your preferred directory.
+
+
+Screenshots
+------------------------------------------------------------------------------
+
+![Mangement Command](http://i.imgur.com/WWEy9.png)
