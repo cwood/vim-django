@@ -6,6 +6,9 @@ Django vim wraps the manage.py and will allow vim to work with your project.
 Commands
 -------------------------------------------------------------------------------
 
+``DjangoAdmin`` will run any command through the ``django-admin.py``
+command.
+
 ``DjangoManage`` will run the management command for the project
 
 ``DjangoProjectActivate`` will activate the project. This will go through
