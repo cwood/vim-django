@@ -14,12 +14,12 @@ if !exists('g:django_projects')
 endif
 
 
-if !exists('g:project_apps')
+if !exists('g:django_project_apps')
     " Sets where to put new apps. If nothing is selected it will
     " just add it to the root of the django project.
-    let g:project_apps = 0
+    let g:django_project_apps = 0
 else
-    let g:project_apps = expand(g:project_apps) " Should expand out incase of home dir
+    let g:django_project_apps = expand(g:django_project_apps) " Should expand out incase of home dir
 endif
 
 if !isdirectory(g:django_projects)
@@ -51,7 +51,7 @@ endfunction
 function! s:Django_Workon(project)
 
     let file_regex = '**/'.a:project.'/settings.py'
-    let file = globpath(g:django_projects, file_regex)
+    let file = split(globpath(g:django_projects, file_regex))[0]
     let g:project_directory = fnamemodify(file, ':h:h')
     let env_module  = a:project.".settings"
 
@@ -59,12 +59,19 @@ python << EOF
 import vim
 import sys
 import os
+from django.core.management import setup_environ
 
 os.environ['DJANGO_SETTINGS_MODULE'] = vim.eval('env_module')
 directory = vim.eval('g:project_directory')
 sys.path.append(directory)
 
 EOF
+if ('g:django_set_workdir')
+    if g:django_set_workdir = 1
+        chdir g:project_directory
+    endif
+endif
+
 endfunction
 
 function! django#Workon(project)
@@ -117,8 +124,16 @@ function! s:DjangoManage(command, ...)
     :execute '!python '.manage.'  '.a:command
 endfunction
 
+function! s:DjangoAdminPy(comamnd, ...)
+    :execute '!django-admin.py '.a:command
+endfunction
+
 function! django#ManageCommandsComplete(arg_lead, ...)
     return s:GetProjectCommands(a:arg_lead)
+endfunction
+
+function! django#AdminManage(command, ...)
+    call s:DjangoAdminPy(a:command)
 endfunction
 
 function! django#Manage(command)
@@ -135,4 +150,4 @@ endfunction
 
 command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjangoManage call django#Manage(<q-args>)
 command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActivate call django#Workon(<q-args>)
-command! -complete=customlist,django#InstalledApps DjangoApps echo <q-args>
+command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjangoAdmin call django#AdminManage(<q-args>)
