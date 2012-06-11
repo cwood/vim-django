@@ -34,10 +34,6 @@ Configuration
 
 ``g:django_projects`` is where your django projects are located.
 
-``g:project_apps`` is where apps are created by default. This is still left
-to do. The idea is when ``DjManage createapp killerapp`` it will create it
-in your preferred directory.
-
 
 Installing
 -------------------------------------------------------------------------------
