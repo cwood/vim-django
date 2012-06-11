@@ -16,6 +16,12 @@ your ``g:django_projects`` and find all the django projects. It will also
 set up ``DJANGO_SETTINGS_MODULE`` in your environment and the directory
 where the settings file is stored in your ``PYTHONPATH``.
 
+``DjangoCreateApp`` will create a new app under your projects base. It will
+autocomplete the path. It just needs is a python path such as,
+``colinbits.apps.new_app`` this will be created in the folder colinbits,
+apps, then run the ``django-admin.py`` to create the app there.
+
+
 
 Mappings
 -------------------------------------------------------------------------------
