@@ -1,6 +1,6 @@
 " django.vim - A bangin' interface for ViM and Django
 " Maintainer: Colin Wood <cwood06@gmail.com>
-" Version: 0.0.1a
+" Version: 0.1.0a
 " License: Same as ViM. see http://www.gnu.org/licenses/vim-license.txt
 
 if !has('python')
@@ -125,7 +125,30 @@ function! s:DjangoManage(command, ...)
 endfunction
 
 function! s:DjangoAdminPy(comamnd, ...)
-    :execute '!django-admin.py '.a:command
+    execute '!django-admin.py '.a:command
+endfunction
+
+function! s:CreateNewApp(app_name)
+    " Should create a app if a projects_app is specified or
+    " should take a python path and create it there
+    let pypath = split(a:app_name , '\.')
+    let new_app = pypath[-1]
+
+    exec 'chdir '.g:project_directory
+    for app in pypath
+
+        if app == new_app
+            exec '! django-admin.py startapp '.new_app
+            break
+        endif
+
+        if !isdirectory(app)
+            call mkdir(app)
+            exec '!touch '.app.'/__init__.py '
+        endif
+
+        exec 'chdir '.app
+    endfor
 endfunction
 
 function! django#ManageCommandsComplete(arg_lead, ...)
@@ -140,14 +163,19 @@ function! django#Manage(command)
     call s:DjangoManage(a:command)
 endfunction
 
+function! django#CreateNewApp(args)
+    call s:CreateNewApp(a:args)
+endfunction
+
 function! django#InstalledApps(arg_lead, ...)
     return s:GetInstalledApps(a:arg_lead)
 endfunction
 
-function! django#GetTemplate(template)
+function! django#GetTemplate()
     return s:DjangoTemplateFinder(a:template)
 endfunction
 
 command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjangoManage call django#Manage(<q-args>)
 command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActivate call django#Workon(<q-args>)
 command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjangoAdmin call django#AdminManage(<q-args>)
+command! -nargs=? DjangoNewApp call django#CreateNewApp(<q-args>)
