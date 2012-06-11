@@ -149,6 +149,38 @@ function! s:CreateNewApp(app_name)
 
         exec 'chdir '.app
     endfor
+
+endfunction
+
+function! s:ProjectPathCompletion(prefix, ...)
+    " List complete a python path
+    " BUG: autocomplete starts with . on first completion
+
+    let pypath = split(a:prefix, '\.')
+    let file_regex = join(pypath, '/').'*'
+
+    let directories = split(globpath(g:project_directory, file_regex))
+    let paths = []
+
+    for directory in directories
+        if isdirectory(directory)
+            let basename = fnamemodify(directory, ':t')
+
+            if len(pypath) == 1
+                let new_path = basename."."
+            else
+                let new_path = join(pypath[:-0], '.').".".basename
+            endif
+
+            call add(paths, new_path)
+        endif
+    endfor
+
+    return paths
+endfunction
+
+function! django#PathCompletion(arg_lead, ...)
+    return s:ProjectPathCompletion(a:arg_lead)
 endfunction
 
 function! django#ManageCommandsComplete(arg_lead, ...)
@@ -178,4 +210,4 @@ endfunction
 command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjangoManage call django#Manage(<q-args>)
 command! -nargs=1 -complete=customlist,django#ProjectsComplete DjangoProjectActivate call django#Workon(<q-args>)
 command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjangoAdmin call django#AdminManage(<q-args>)
-command! -nargs=? DjangoNewApp call django#CreateNewApp(<q-args>)
+command! -nargs=? -complete=customlist,django#PathCompletion DjangoCreateApp call django#CreateNewApp(<q-args>)
