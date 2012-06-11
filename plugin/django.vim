@@ -138,13 +138,14 @@ function! s:CreateNewApp(app_name)
     for app in pypath
 
         if app == new_app
-            exec '! django-admin.py startapp '.new_app
+            silent exec '! django-admin.py startapp '.new_app
+            echo "Created new app at ".join(pypath, '.')
             break
         endif
 
         if !isdirectory(app)
             call mkdir(app)
-            exec '!touch '.app.'/__init__.py '
+            silent exec '!touch '.app.'/__init__.py'
         endif
 
         exec 'chdir '.app
