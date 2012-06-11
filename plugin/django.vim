@@ -13,15 +13,6 @@ if !exists('g:django_projects')
     let g:django_projects = expand('~/Projects')
 endif
 
-
-if !exists('g:django_project_apps')
-    " Sets where to put new apps. If nothing is selected it will
-    " just add it to the root of the django project.
-    let g:django_project_apps = 0
-else
-    let g:django_project_apps = expand(g:django_project_apps) " Should expand out incase of home dir
-endif
-
 if !isdirectory(g:django_projects)
     echoerr "Could not access ".g:django_projects
     finish
