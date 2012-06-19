@@ -1,6 +1,6 @@
 " django.vim - A bangin' interface for ViM and Django
 " Maintainer: Colin Wood <cwood06@gmail.com>
-" Version: 0.1.0a
+" Version: 0.2.0a
 " License: Same as ViM. see http://www.gnu.org/licenses/vim-license.txt
 
 if !has('python')
@@ -50,7 +50,6 @@ python << EOF
 import vim
 import sys
 import os
-from django.core.management import setup_environ
 
 os.environ['DJANGO_SETTINGS_MODULE'] = vim.eval('env_module')
 directory = vim.eval('g:project_directory')
@@ -141,7 +140,6 @@ function! s:CreateNewApp(app_name)
 
         exec 'chdir '.app
     endfor
-
 endfunction
 
 function! s:ProjectPathCompletion(prefix, ...)
