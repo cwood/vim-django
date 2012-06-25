@@ -45,7 +45,7 @@ python to be compiled in.
 Screen shots
 -------------------------------------------------------------------------------
 
-![Mangement Command](http://i.imgur.com/QeaQY.png)
+![Mangement Command](http://i.imgur.com/NYd9d.png)
 
 
 FAQ
