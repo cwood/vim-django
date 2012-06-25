@@ -1,0 +1,78 @@
+*vim-django.txt*    For Vim version 7.3         Last Change: 2012 June 19
+==============================================================================
+
+                Django - A web framework for perfectionist
+
+==============================================================================
+CONTENTS                                                       *django-contents*
+
+        1. Introduction .......................... |django-introduction|
+        2. Configuration ......................... |django-configuration|
+        3. Keymappings ........................... |django-keymappings|
+        4. Extensions To Vim ..................... |django-extensions|
+        5. Commands .............................. |django-commands|
+        6. Thanks & Contributing ................. |django-thank-contribute|
+
+==============================================================================
+Introdcution                                               *django-introduction*
+
+Django VIM is my extension to vim to making working with django projects
+easier. This means making creating new apps, working with your projects
+management commands inside of ViM, the django-admin.py script, managing
+the apps, and variouse other extensions.
+
+==============================================================================
+Configuration                                             *django-configruation*
+
+*django-vim-global-vars*
+
+*g:project_directory* This should be set to where your projects live.
+it needs either a absolute path or you can use the |expand()| to include
+your home directory.
+
+Example:
+        g:project_directory = expand('~/Projects')
+
+==============================================================================
+Keymappings                                                 *django-keymappings*
+
+                        None yet. This makes me a sad panda
+
+==============================================================================
+Extenions to ViM                                              *django-extenions*
+
+                        Nothing yet...
+
+==============================================================================
+Commands                                                       *django-commands*
+
+*DjangoProjectActivate* activates your project inside of ViM. This has
+to be run first in order for the other commands and for ViM to take
+full advantage of youre project and your site-packages that use django.
+
+*DjangoManage* this will wrap the manage.py command for your project. It will
+try to autocomplete the commands available to your manage.py. This is only
+problematic if your project doens't use the standard django settings or can't
+be imported by doing from django.conf import settings.
+
+*DjangoAdmin* will wrap the django-admin.py for your systems djang-admin.py
+script. If you use virtualenv's it should wrap it for your enviroment. This
+isn't that different than from |DjangoManage| other than access to the admin
+script.
+
+*DjangoCreateApp* will create a new app based on a python path. If you
+give it yourapp.apps.super_cool_app it will create the app there by using
+the django-admin and it will also create corrisponding init files and
+directories if they are not already created.
+
+==============================================================================
+Thank You & Contributing                               *django-thank-contribute*
+
+Thanks for using my little plugin. I plan on adding more features as I need
+them. If there is something you would like to see in this script feel free
+to add a issue at the github project.
+It is located at https://github.com/cwood/vim-django. Also feel free to
+fork it and send in a pull request. I love seeing people using my code.
+
+==============================================================================
+vim:tw=78:sw=4:ts=8:expandtab:ft=help:norl
