@@ -197,13 +197,15 @@ def create_possible_paths(current_root, current_prefix):
         if begining_path and matching:
             if directory.startswith(matching):
                 possible_path = begining_path+'.'+directory+'.'
+                paths.append(possible_path)
 
-        elif begining_path:
+        elif begining_path and not matching:
             possible_path = begining_path+'.'+directory+'.'
+            paths.append(possible_path)
         else:
             possible_path = directory+'.'
+            paths.append(possible_path)
 
-        paths.append(possible_path)
 
     return paths
 
