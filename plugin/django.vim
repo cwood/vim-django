@@ -90,16 +90,9 @@ EOF
 endfunction
 
 function! s:DjangoTemplateFinder(template_name, ...)
-python << EOF
-from django.template.loaders.app_directories import Loader, app_template_dirs
-import os
-template_name = vim.eval('a:template_name')
-filepaths = Loader().get_template_sources(template_name, app_template_dirs)
-for filepath in filepaths:
-    if os.path.exists(filepath):
-        vim.command('return'+str(filepath))
-        break
-EOF
+    let template_regex = '**/'.a:template_name
+    let possible_templates = split(globpath(g:project_directory, template_regex))
+    return possible_templates
 endfunction
 
 function! s:GetInstalledApps(prefix, ...)
@@ -252,7 +245,7 @@ function! django#InstalledApps(arg_lead, ...)
     return s:GetInstalledApps(a:arg_lead)
 endfunction
 
-function! django#GetTemplate()
+function! django#GetTemplate(template)
     return s:DjangoTemplateFinder(a:template)
 endfunction
 
