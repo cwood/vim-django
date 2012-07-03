@@ -34,6 +34,10 @@ Configuration
 
 ``g:django_projects`` is where your django projects are located.
 
+``g:django_activate_virtualenv`` when true will activate a virtualenv that
+starts with the same name. An example being. colinbits, is the site, and the
+virtuale env being colinbits.com.
+
 
 Installing
 -------------------------------------------------------------------------------
