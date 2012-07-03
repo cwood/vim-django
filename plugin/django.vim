@@ -47,6 +47,16 @@ function! s:Django_Workon(project)
     let env_module  = a:project.".settings"
     let g:project_name = a:project
 
+    if exists('g:django_activate_virtualenv')
+        if exists('g:virtualenv_loaded')
+            for env in virtualenv#names(a:project)
+                call virtualenv#activate(env)
+            endfor
+        else
+            echoerr 'VirtualEnv not installed. Not activating.'
+        endif
+    endif
+
 python << EOF
 import vim
 import sys
@@ -87,12 +97,6 @@ if prefix:
 
 vim.command('return '+str(commands))
 EOF
-endfunction
-
-function! s:DjangoTemplateFinder(template_name, ...)
-    let template_regex = '**/'.a:template_name
-    let possible_templates = split(globpath(g:project_directory, template_regex))
-    return possible_templates
 endfunction
 
 function! s:GetInstalledApps(prefix, ...)
@@ -243,10 +247,6 @@ endfunction
 
 function! django#InstalledApps(arg_lead, ...)
     return s:GetInstalledApps(a:arg_lead)
-endfunction
-
-function! django#GetTemplate(template)
-    return s:DjangoTemplateFinder(a:template)
 endfunction
 
 command! -nargs=? -complete=customlist,django#ManageCommandsComplete DjangoManage call django#Manage(<q-args>)
