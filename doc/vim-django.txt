@@ -30,6 +30,14 @@ Configuration                                             *django-configruation*
 it needs either a absolute path or you can use the |expand()| to include
 your home directory.
 
+*g:django_activate_nerdtree* when set to 1 it will activate nerdtree if you
+are using it. This is only done when activating a new django project.
+
+*g:django_activate_virtualenv* when also set to 1, this will activate a
+corrisponding virtual enviroment. The virtual enviroment must start with
+the same name as your project does. An example being: colinbits is my django
+project; this will activate the colinbits.com virtualenv.
+
 Example:
         g:project_directory = expand('~/Projects')
 
