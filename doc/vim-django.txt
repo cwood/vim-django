@@ -15,12 +15,12 @@ CONTENTS                                                       *django-contents*
         6. Thanks & Contributing ................. |django-thank-contribute|
 
 ==============================================================================
-Introdcution                                               *django-introduction*
+Introduction                                               *django-introduction*
 
 Django VIM is my extension to vim to making working with django projects
 easier. This means making creating new apps, working with your projects
 management commands inside of ViM, the django-admin.py script, managing
-the apps, and variouse other extensions.
+the apps, and various other extensions.
 
 ==============================================================================
 Configuration                                             *django-configruation*
@@ -38,7 +38,7 @@ Example:
 are using it. This is only done when activating a new django project.
 
 *g:django_activate_virtualenv* when also set to 1, this will activate a
-corrisponding virtual enviroment. The virtual enviroment must start with
+corresponding virtual environment. The virtual environment must start with
 the same name as your project does. An example being: colinbits is my django
 project; this will activate the colinbits.com virtualenv.
 
@@ -58,11 +58,11 @@ Commands                                                       *django-commands*
 
 *DjangoProjectActivate* activates your project inside of ViM. This has
 to be run first in order for the other commands and for ViM to take
-full advantage of youre project and your site-packages that use django.
+full advantage of your project and your site-packages that use django.
 
 *DjangoManage* this will wrap the manage.py command for your project. It will
 try to autocomplete the commands available to your manage.py. This is only
-problematic if your project doens't use the standard django settings or can't
+problematic if your project doesn't use the standard django settings or can't
 be imported by doing from django.conf import settings.
 
 *DjangoAdmin* will wrap the django-admin.py for your systems djang-admin.py
@@ -71,16 +71,16 @@ isn't that different than from |DjangoManage| other than access to the admin
 script.
 
 *DjangoCreateApp* will create a new app based on a python path. If you
-give it yourapp.apps.super_cool_app it will create the app there by using
-the django-admin and it will also create corrisponding init files and
+give it your app.apps.super_cool_app it will create the app there by using
+the django-admin and it will also create corresponding init files and
 directories if they are not already created.
 
 ==============================================================================
 Thank You & Contributing                               *django-thank-contribute*
 
-Thanks for using my little plugin. I plan on adding more features as I need
+Thanks for using my little plug-in. I plan on adding more features as I need
 them. If there is something you would like to see in this script feel free
-to add a issue at the github project.
+to add a issue at the Github project.
 It is located at https://github.com/cwood/vim-django. Also feel free to
 fork it and send in a pull request. I love seeing people using my code.
 
