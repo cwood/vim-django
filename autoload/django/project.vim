@@ -7,12 +7,18 @@ function! django#project#activate(project)
     let g:project_name = a:project
 
     if exists('g:django_activate_virtualenv')
-        if exists('g:virtualenv_loaded')
+        if exists('g:virtualenv_loaded') && g:django_activate_virtualenv == 1
             for env in virtualenv#names(a:project)
                 call virtualenv#activate(env)
             endfor
         else
             echoerr 'VirtualEnv not installed. Not activating.'
+        endif
+    endif
+
+    if exists('g:django_activate_nerdtree')
+        if exists('g:loaded_nerd_tree')
+            exec ':NERDTree '.g:project_directory
         endif
     endif
 
