@@ -38,6 +38,17 @@ Configuration
 starts with the same name. An example being. colinbits, is the site, and the
 virtuale env being colinbits.com.
 
+Working with other Scripts
+-------------------------------------------------------------------------------
+
+NERDTree:
+    ``g:django_activate_nerdtree`` when set to 1 will launch nerdtree when
+    activating the django project.
+
+VirtualEnv:
+    ``g:django_activate_virtualenv`` when set to 1 will activate the virtual
+    env that starts with the same name.
+
 
 Installing
 -------------------------------------------------------------------------------
