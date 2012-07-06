@@ -98,6 +98,9 @@ Example:
         endfunction
 
 The above example will activate a project that uses django-classbasesettings.
+If a custom function is not created it will activate the project by adding
+the project_directory to sys.path and setting $DJANOG_SETTINGS_MODULE to
+project_name.settings.
 
 ==============================================================================
 Thank You & Contributing                               *django-thank-contribute*
