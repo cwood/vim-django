@@ -38,6 +38,15 @@ Configuration
 starts with the same name. An example being. colinbits, is the site, and the
 virtuale env being colinbits.com.
 
+
+Custom Activation of Projects
+-------------------------------------------------------------------------------
+
+Since not everyone uses the default settings file vim-django will allow you to
+add a custom function to activate any project. In your vimrc you can define a
+function called ``ActivateProject`` it needs to accept one argument. From here
+you can have it activate the project.
+
 Working with other Scripts
 -------------------------------------------------------------------------------
 
