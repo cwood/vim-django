@@ -118,3 +118,18 @@ function! django#completions#projectscomplete(prefix, ...)
 
     return filter(copy(all_projects), arg_regex)
 endfunction
+
+function! django#completions#installed_apps(prefix, ...)
+python << EOB
+import vim
+from django.conf import settings
+prefix = vim.eval('a:prefix')
+
+if prefix:
+    apps = [app for app in settings.INSTALLED_APPS if app.startswith(prefix)]
+else:
+    apps = settings.INSTALLED_APPS
+
+vim.command('return'+str(apps))
+EOB
+endfunction
