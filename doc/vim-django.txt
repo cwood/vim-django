@@ -12,7 +12,8 @@ CONTENTS                                                       *django-contents*
         3. Keymappings ........................... |django-keymappings|
         4. Extensions To Vim ..................... |django-extensions|
         5. Commands .............................. |django-commands|
-        6. Thanks & Contributing ................. |django-thank-contribute|
+        6. Custom Setup .......................... |django-custom-setup|
+        7. Thanks & Contributing ................. |django-thank-contribute|
 
 ==============================================================================
 Introduction                                               *django-introduction*
@@ -74,6 +75,29 @@ script.
 give it your app.apps.super_cool_app it will create the app there by using
 the django-admin and it will also create corresponding init files and
 directories if they are not already created.
+
+==============================================================================
+Custom Setup                                            *django-custom-setup*
+
+Incase you dont use the standard setup method or have the ability to use
+the settings enviroment variable from your env. You can create your own
+setup function.
+
+The function has to be named *ActivateProject* it should accept a project name
+you can also access the other global variables such as |g:project_directory| .
+
+Example:
+
+        function! ActivateProject(project)
+            python << EOF
+            import cbsettings
+            import sys
+            sys.path.append(vim.eval('g:project_directory'))
+            cbsettings.configure(vim.eval('a:project')+'.settings.switcher')
+            EOF
+        endfunction
+
+The above example will activate a project that uses django-classbasesettings.
 
 ==============================================================================
 Thank You & Contributing                               *django-thank-contribute*
