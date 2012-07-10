@@ -3,6 +3,7 @@
 " Version: 0.2.0a
 " License: Same as ViM. see http://www.gnu.org/licenses/vim-license.txt
 
+
 if !has('python')
     echoerr "This script wont work without Python. Please compile with it."
 endif
