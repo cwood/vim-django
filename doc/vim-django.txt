@@ -47,7 +47,13 @@ project; this will activate the colinbits.com virtualenv.
 ==============================================================================
 Keymappings                                                 *django-keymappings*
 
-                        None yet. This makes me a sad panda
+*django-editing-related* ----------------------------------------------------
+
+There are mappings for editing related source for a django app. The mappings
+to edit related files all follow the same pattern. That being. (r) for
+related, (m) for models.py, and (t) for tab. So this will be edit the related
+models.py in a new tab. There is also (s), and (v) for split and vsplit
+respectivly.
 
 ==============================================================================
 Extenions to ViM                                              *django-extenions*
