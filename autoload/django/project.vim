@@ -34,6 +34,8 @@ function! django#project#activate(project)
         endif
     endif
 
+    exec 'set path+='.expand(g:project_directory)
+
     call ActivateProject(a:project)
 
 endfunction
