@@ -21,3 +21,13 @@ function! django#apps#create_app(app_name)
         exec 'chdir '.app
     endfor
 endfunction
+
+
+function! django#apps#edit(file_prefix, open_as)
+    let current_app_directory = fnamemodify(expand('%:p'), ':h')
+    let python_files = split(globpath(current_app_directory, '**/'.a:file_prefix))
+    if len(python_files) == 1
+        let only_file = python_files[0]
+        call django#utils#vim_open(only_file, a:open_as)
+    endif
+endfunction
