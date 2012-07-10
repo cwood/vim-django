@@ -28,18 +28,7 @@ Mappings
 
 There are mappings for easily editing related django files while working on a
 app. They all can be changed if you dont like how they are currently mapped.
-
-+---------------------+-----------------------------------------+
-|    Mapping          |  Description                            |
-+=====================+=========================================+
-|    rmt              |  Edit the related model in a new tab    |
-+---------------------+-----------------------------------------+
-|    rms              |  Edit the related model in a new split  |
-+---------------------+-----------------------------------------+
-|    rmv              | Edit the related model in a new vsplit  |
-+---------------------+-----------------------------------------+
-
-These are repeatative. There are mappins for (v|views), (u|urls), (a|admin),
+There are mappins for (v|views), (u|urls), (a|admin),
 and (t|tests). If you want to remap these you can call the function
 ``django#apps#edit('name_of_file.py', 'split')`` and it will open up
 the file it fineds in a split.
