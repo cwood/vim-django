@@ -1,7 +1,11 @@
-Django Vim
+Vim-Django
 ===============================================================================
 
-Django vim wraps the manage.py and will allow vim to work with your project.
+Vim-Django is a vim script that helps manage a django app. It has wrapping's
+for the ``django-admin.py``, your projects ``manage.py`` and some helper 
+commands. It also has some quick ways to find templates, edit related files 
+in a app, create new apps, and help manage django while using Vim.
+
 
 Commands
 -------------------------------------------------------------------------------
