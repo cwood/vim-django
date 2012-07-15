@@ -1,22 +1,14 @@
-" TODO: Make a function to create all of these mappings.
-"
+function! s:CreateRelatedMappingsPerFile(filename)
+    let methods = ['tab', 'vsplit', 'split']
 
-nmap rmt :call django#apps#edit('models.py', 'tab')<CR>
-nmap rmv :call django#apps#edit('models.py', 'vsplit')<CR>
-nmap rms :call django#apps#edit('models.py', 'split')<CR>
+    for method in methods
+        execute 'nmap r'.a:filename[:0].method[:0].' :call django#apps#edit("'.a:filename.'", "'.method.'")<CR>'
+    endfor
 
-nmap rut :call django#apps#edit('urls.py', 'tab')<CR>
-nmap ruv :call django#apps#edit('urls.py', 'vsplit')<CR>
-nmap rus :call django#apps#edit('urls.py', 'split')<CR>
+endfunction
 
-nmap rvt :call django#apps#edit('views.py', 'tab')<CR>
-nmap rvv :call django#apps#edit('views.py', 'vsplit')<CR>
-nmap rvs :call django#apps#edit('views.py', 'split')<CR>
-
-nmap rat :call django#apps#edit('admin.py', 'tab')<CR>
-nmap rav :call django#apps#edit('admin.py', 'vsplit')<CR>
-nmap ras :call django#apps#edit('admin.py', 'split')<CR>
-
-nmap rtt :call django#apps#edit('tests.py', 'tab')<CR>
-nmap rtv :call django#apps#edit('tests.py', 'vsplit')<CR>
-nmap rts :call django#apps#edit('tests.py', 'split')<CR>
+call s:CreateRelatedMappingsPerFile('models.py')
+call s:CreateRelatedMappingsPerFile('views.py')
+call s:CreateRelatedMappingsPerFile('urls.py')
+call s:CreateRelatedMappingsPerFile('tests.py')
+call s:CreateRelatedMappingsPerFile('admin.py')
