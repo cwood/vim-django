@@ -1,4 +1,4 @@
-function! django#apps#create_app(app_name)
+function! django#apps#create_app(app_name, ...)
     " Should create a app if a projects_app is specified or
     " should take a python path and create it there
     let pypath = split(a:app_name , '\.')
