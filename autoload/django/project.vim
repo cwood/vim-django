@@ -31,7 +31,8 @@ function! django#project#activate(project)
     if exists('g:django_activate_nerdtree')
         if exists('g:loaded_nerd_tree') && g:django_activate_nerdtree == 1
             exec ':NERDTree '.g:project_directory
-        endif
+        else
+            echoerr "NERDTree not installed. Can not open."
     endif
 
     exec 'set path+='.expand(g:project_directory)
