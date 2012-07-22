@@ -6,6 +6,7 @@
 
 if !has('python')
     echoerr "This script wont work without Python. Please compile with it."
+    finish
 endif
 
 if !exists('g:django_projects')
