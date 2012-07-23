@@ -33,6 +33,7 @@ function! django#project#activate(project)
             exec ':NERDTree '.g:project_directory
         else
             echoerr "NERDTree not installed. Can not open."
+        endif
     endif
 
     exec 'set path+='.expand(g:project_directory)
