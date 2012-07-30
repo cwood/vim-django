@@ -13,6 +13,8 @@ if !exists('g:django_projects')
     " Where the projects are stored at. Will start from this
     " root and search down for all someapp.settings files
     let g:django_projects = expand('~/Projects')
+else
+    let g:django_projects = expand(g:django_projects)
 endif
 
 if !isdirectory(g:django_projects)
