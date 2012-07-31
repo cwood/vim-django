@@ -44,7 +44,7 @@ corresponding virtual environment. The virtual environment must start with
 the same name as your project does. An example being: colinbits is my django
 project; this will activate the colinbits.com virtualenv.
 
-*g:django_projects_container* is used when autocompleting django projects.
+*g:django_project_container* is used when autocompleting django projects.
 If you use a complex project organization structure. This can come in handy
 for making autocompletions faster. For example. If you have a
 project_name.something/source/django_project. You could set
