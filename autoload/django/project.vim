@@ -15,7 +15,7 @@ function! django#project#activate(project)
 
     let file_regex = a:project.'/settings.py'
     let file = findfile(file_regex, g:django_projects.'**')
-    let g:project_directory = fnamemodify(file, ':h:h')
+    let g:project_directory = fnamemodify(file, ':p:h:h')
     let g:project_name = a:project
 
     if exists('g:django_activate_virtualenv')
