@@ -99,12 +99,14 @@ EOB
 endfunction
 
 function! django#completions#projectscomplete(prefix, ...)
-    " TODO: Make me faster!
-    let file_regex = '**/settings.py'
-    let arg_regex = 'v:val =~ "'.a:prefix.'"'
+
+    if exists('g:django_project_container')
+        let file_regex = '*/'.g:django_project_container.'/*/settings.py'
+    else
+        let file_regex = '**/settings.py'
+    endif
 
     let all_settings_files = split(globpath(g:django_projects, file_regex))
-
     let all_projects = []
 
     for setting_file in all_settings_files
@@ -114,9 +116,11 @@ function! django#completions#projectscomplete(prefix, ...)
 
     if a:prefix == ''
         return all_projects
+    else
+        let arg_regex = 'v:val =~ "'.a:prefix.'"'
+        return filter(copy(all_projects), arg_regex)
     endif
 
-    return filter(copy(all_projects), arg_regex)
 endfunction
 
 function! django#completions#installed_apps(prefix, ...)
