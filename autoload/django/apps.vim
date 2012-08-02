@@ -28,7 +28,7 @@ function! django#apps#edit(file_prefix, open_as)
     " models. Since this can be a __init__ file inside of the models.py.
     " Should check both for a file_prefix.py and a folder called file_prefix.
     let current_app_directory = fnamemodify(expand('%:p'), ':h')
-    let python_files = split(globpath(current_app_directory, '**/'.a:file_prefix))
+    let python_files = split(globpath(current_app_directory, '*/'.a:file_prefix))
     if len(python_files) == 1
         let only_file = python_files[0]
         call django#utils#vim_open(only_file, a:open_as)
