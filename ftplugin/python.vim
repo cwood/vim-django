@@ -4,7 +4,6 @@ function! s:CreateRelatedMappingsPerFile(filename)
     for method in methods
         execute 'nmap r'.a:filename[:0].method[:0].' :call django#apps#edit("'.a:filename.'", "'.method.'")<CR>'
     endfor
-
 endfunction
 
 call s:CreateRelatedMappingsPerFile('models.py')
