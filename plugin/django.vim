@@ -34,3 +34,19 @@ command! -nargs=? -complete=customlist,django#completions#managmentcommands Djan
 command! -nargs=1 -complete=customlist,django#completions#projectscomplete DjangoProjectActivate call django#project#activate(<q-args>)
 command! -nargs=? -complete=customlist,django#completions#managmentcommands DjangoAdmin call django#commands#admin(<q-args>)
 command! -nargs=? -complete=customlist,django#completions#pypath DjangoCreateApp call django#apps#create_app(<q-args>)
+
+command! DjangoCollectStaticLink call django#commands#manage('collectstatic --noinput --link')
+command! DjangoSyncDb call django#commands#manage('syncdb')
+
+python << EOB
+import sys
+import os
+import vim
+
+django_vim_path = vim.eval('expand("<sfile>")')
+project_root = os.path.abspath(os.path.join(os.path.dirname(django_vim_path), '..'))
+django_python_path = os.path.join(project_root, 'python')
+
+if django_python_path not in sys.path:
+    sys.path.append(django_python_path)
+EOB
