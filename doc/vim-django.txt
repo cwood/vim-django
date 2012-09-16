@@ -121,6 +121,7 @@ Thank You & Contributing                               *django-thank-contribute*
 Thanks for using my little plug-in. I plan on adding more features as I need
 them. If there is something you would like to see in this script feel free
 to add a issue at the Github project.
+
 It is located at https://github.com/cwood/vim-django. Also feel free to
 fork it and send in a pull request. I love seeing people using my code.
 
