@@ -19,7 +19,6 @@ endif
 
 if !isdirectory(g:django_projects)
     echoerr "Could not access ".g:django_projects
-    finish
 endif
 
 if !exists('g:django_project_templates')
