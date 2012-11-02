@@ -13,8 +13,14 @@ endif
 
 function! django#project#activate(project)
 
-    let file_regex = a:project.'/settings.py'
-    let file = findfile(file_regex, g:django_projects.'**')
+
+    if exists('g:django_project_container')
+        let file_regex = '*/'.g:django_project_container.'/'.a:project.'/settings.py'
+    else
+        let file_regex = a:project.'/settings.py'
+    endif
+
+    let file = split(globpath(g:django_projects, file_regex))[0]
     let g:project_directory = fnamemodify(file, ':p:h:h')
     let g:project_name = a:project
 
