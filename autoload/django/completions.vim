@@ -69,7 +69,9 @@ def _get_directories(path):
     directories = []
     for item in os.listdir(path):
         if os.path.isdir(os.path.join(path, item)) and not item.startswith('.'):
-            directories.append(item)
+            files = os.listdir(os.path.join(path, item))
+            if '__init__.py' in files:
+                directories.append(item)
 
     return directories
 
