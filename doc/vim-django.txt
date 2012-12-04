@@ -93,7 +93,7 @@ directories if they are not already created.
 Custom Setup                                            *django-custom-setup*
 
 Incase you dont use the standard setup method or have the ability to use
-the settings enviroment variable from your env. You can create your own
+the settings environment variable from your env. You can create your own
 setup function.
 
 The function has to be named *ActivateProject* it should accept a project name
