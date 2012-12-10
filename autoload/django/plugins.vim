@@ -1,3 +1,4 @@
+if exists('g:loaded_nerd_tree')
 function! django#plugins#nerdtree_create()
     let curDirNode = g:NERDTreeDirNode.GetSelected()
 
@@ -9,3 +10,4 @@ function! django#plugins#nerdtree_create()
     chdir curDirNode.path.str()
     call django#commands#manage('startapp '.newDjangoName)
 endfunction
+endif
