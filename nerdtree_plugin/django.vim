@@ -1,3 +1,9 @@
+if exists('g:django_nerdtree_plugin_loaded')
+    finish
+endif
+
+let g:django_nerdtree_plugin_loaded = 1
+
 call NERDTreeAddMenuSeparator()
 
 call NERDTreeAddMenuItem({
