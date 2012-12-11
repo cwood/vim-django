@@ -7,7 +7,7 @@ function! django#plugins#nerdtree_create()
       \ "Enter the django-app name to be created. \n".
       \ "==> ")
 
-    chdir curDirNode.path.str()
+    exec 'chdir ' . curDirNode.path.str()
     call django#commands#manage('startapp '.newDjangoName)
 endfunction
 endif
