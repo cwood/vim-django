@@ -29,10 +29,4 @@ if !exists('g:django_app_templates')
     let g:django_app_templates = expand('~/.templates/apps')
 endif
 
-command! -nargs=? -complete=customlist,django#completions#managmentcommands DjangoManage call django#commands#manage(<q-args>)
 command! -nargs=1 -complete=customlist,django#completions#projectscomplete DjangoProjectActivate call django#project#activate(<q-args>)
-command! -nargs=? -complete=customlist,django#completions#managmentcommands DjangoAdmin call django#commands#admin(<q-args>)
-command! -nargs=? -complete=customlist,django#completions#pypath DjangoCreateApp call django#apps#create_app(<q-args>)
-
-command! DjangoCollectStaticLink call django#commands#manage('collectstatic --noinput --link')
-command! DjangoSyncDb call django#commands#manage('syncdb')

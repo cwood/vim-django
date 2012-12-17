@@ -46,4 +46,10 @@ function! django#project#activate(project)
     exec 'set path+='.expand(g:project_directory)
     call ActivateProject(a:project)
 
+    command! -nargs=? -complete=customlist,django#completions#managmentcommands DjangoManage call django#commands#manage(<q-args>)
+    command! -nargs=? -complete=customlist,django#completions#managmentcommands DjangoAdmin call django#commands#admin(<q-args>)
+    command! DjangoCollectStaticLink call django#commands#manage('collectstatic --noinput --link')
+    command! DjangoSyncDb call django#commands#manage('syncdb')
+    command! -nargs=? -complete=customlist,django#completions#pypath DjangoCreateApp call django#apps#create_app(<q-args>)
+
 endfunction
