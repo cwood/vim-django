@@ -86,17 +86,48 @@ EOB
 endfunction
 
 
-function! django#completions#managmentcommands(prefix, ...)
+function! django#completions#managmentcommands(prefix, line, ...)
 python << EOB
 from django.core.management import get_commands
+from django.conf import settings
+
+def south(prefix, line, commandname):
+
+    app_names = list(settings.INSTALLED_APPS)
+    if prefix:
+        app_names = [app for app in app_names if app.startswith(prefix)]
+
+    return app_names
+
+
+command_completions = {
+    ('migrate', 'schemamigration', 'datamigration'): south,
+}
 
 prefix = vim.eval('a:prefix')
+line = vim.eval('a:line').split(' ')
 commands = list(get_commands())
 
-if prefix:
-    commands = [command for command in commands if command.startswith(prefix)]
+vim_command = line[0]
 
-vim.command('return '+str(commands))
+try:
+    subcommand = line[1]
+except (IndexError, AttributeError, KeyError):
+    subcommand = prefix
+
+commands = [command for command in commands if command.startswith(subcommand)]
+if len(commands) == 1:
+
+    try:
+        options = line[2]
+    except (IndexError, AttributeError, KeyError):
+        options = None
+
+    for commands, function in command_completions.iteritems():
+        if subcommand in commands:
+            vim.command('return ' + str(function(prefix=prefix, line=line, commandname=subcommand)))
+else:
+    vim.command('return '+str(commands))
 EOB
 endfunction
 
