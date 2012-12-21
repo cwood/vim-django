@@ -118,6 +118,9 @@ except (IndexError, AttributeError, KeyError):
 commands = [command for command in commands if command.startswith(subcommand)]
 if len(commands) == 1:
 
+    if commands[0].startswith(prefix):
+        vim.command('return '+str(commands))
+
     try:
         options = line[2]
     except (IndexError, AttributeError, KeyError):
