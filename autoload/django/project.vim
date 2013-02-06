@@ -13,11 +13,10 @@ endif
 
 function! django#project#activate(project)
 
-
     if exists('g:django_project_container')
-        let file_regex = '*/'.g:django_project_container.'/'.a:project.'/settings.py'
+        let file_regex = '*/'.g:django_project_container.'/'.a:project.'/settings*'
     else
-        let file_regex = a:project.'/settings.py'
+        let file_regex = a:project.'/settings*'
     endif
 
     let file = split(globpath(g:django_projects, file_regex))[0]
