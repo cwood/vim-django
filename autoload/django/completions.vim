@@ -137,9 +137,9 @@ endfunction
 function! django#completions#projectscomplete(prefix, ...)
 
     if exists('g:django_project_container')
-        let file_regex = '*/'.g:django_project_container.'/*/settings.py'
+        let file_regex = '*/'.g:django_project_container.'/*/settings*'
     else
-        let file_regex = '**/settings.py'
+        let file_regex = '**/settings*'
     endif
 
     let all_settings_files = split(globpath(g:django_projects, file_regex))
