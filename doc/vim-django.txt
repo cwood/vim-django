@@ -73,6 +73,8 @@ Commands                                                       *django-commands*
 *DjangoProjectActivate* activates your project inside of ViM. This has
 to be run first in order for the other commands and for ViM to take
 full advantage of your project and your site-packages that use django.
+This also adds your template and static directories so when in views/templates
+you can |gf| and open up the new file.
 
 *DjangoManage* this will wrap the manage.py command for your project. It will
 try to autocomplete the commands available to your manage.py. This is only
