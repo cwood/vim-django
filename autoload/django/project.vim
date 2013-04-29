@@ -45,6 +45,16 @@ function! django#project#activate(project)
     exec 'set path+='.expand(g:project_directory)
     call ActivateProject(a:project)
 
+    let template_dirs = split(globpath(g:project_directory, '**/templates'))
+    for template_dir in template_dirs
+        exec 'set path+='.expand(template_dir)
+    endfor
+
+    let static_dirs = split(globpath(g:project_directory, '**/static'))
+    for static_dir in static_dirs
+        exec 'set path+='.expand(static_dir)
+    endfor
+
     command! -nargs=? -complete=customlist,django#completions#managmentcommands DjangoManage call django#commands#manage(<q-args>)
     command! -nargs=? -complete=customlist,django#completions#managmentcommands DjangoAdmin call django#commands#admin(<q-args>)
     command! -nargs=? -complete=customlist,django#completions#pypath DjangoCreateApp call django#apps#create_app(<q-args>)
