@@ -20,7 +20,13 @@ function! django#project#activate(project)
     endif
 
     let file = split(globpath(g:django_projects, file_regex))[0]
-    let g:project_directory = fnamemodify(file, ':p:h:h')
+
+    if isdirectory(file)
+        let g:project_directory = fnamemodify(file, ':h:h')
+    else
+        let g:project_directory = fnamemodify(file, ':p:h:h')
+    endif
+
     let g:project_name = a:project
 
     if exists('g:django_activate_virtualenv')
