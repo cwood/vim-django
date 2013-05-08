@@ -1,4 +1,4 @@
-*vim-django.txt*    For Vim version 7.3         Last Change: 2012 June 19
+*vim-django.txt*           For Vim version 7.3           Last Change: 2013-05-08
 ==============================================================================
 
                 Django - A web framework for perfectionist
@@ -75,6 +75,17 @@ to be run first in order for the other commands and for ViM to take
 full advantage of your project and your site-packages that use django.
 This also adds your template and static directories so when in views/templates
 you can |gf| and open up the new file.
+
+An example being::
+
+    from django.views.generic import TemplateView
+
+
+    class HomePage(TemplateView):
+        template_name = 'site/home_page.html'
+
+If you |gf| over "site/home_page.html" itll open up the first found
+site/home_page.html.
 
 *DjangoManage* this will wrap the manage.py command for your project. It will
 try to autocomplete the commands available to your manage.py. This is only
