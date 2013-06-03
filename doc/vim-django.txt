@@ -1,4 +1,4 @@
-*vim-django.txt*           For Vim version 7.3           Last Change: 2013-05-08
+*vim-django.txt*           For Vim version 7.3           Last Change: 2013-06-03
 ==============================================================================
 
                 Django - A web framework for perfectionist
@@ -29,12 +29,12 @@ Configuration                                             *django-configruation*
 
 *django-vim-global-vars* -----------------------------------------------------
 
-*g:project_directory* This should be set to where your projects live.
+*g:django_project_directory* This should be set to where your projects live.
 it needs either a absolute path or you can use the |expand()| to include
 your home directory.
 
 Example:
-        g:project_directory = expand('~/Projects')
+        g:django_project_directory = expand('~/Projects')
 
 *g:django_activate_nerdtree* when set to 1 it will activate |NERDTree| if you
 are using it. This is only done when activating a new django project.
@@ -110,22 +110,25 @@ the settings environment variable from your env. You can create your own
 setup function.
 
 The function has to be named *ActivateProject* it should accept a project name
-you can also access the other global variables such as |g:project_directory| .
+
+you can also access the other global variables such as
+|g:django_project_directory|.
 
 Example:
+
 
         function! ActivateProject(project)
             python << EOF
             import cbsettings
             import sys
-            sys.path.append(vim.eval('g:project_directory'))
+            sys.path.append(vim.eval('g:django_project_directory'))
             cbsettings.configure(vim.eval('a:project')+'.settings.switcher')
             EOF
         endfunction
 
 The above example will activate a project that uses django-classbasesettings.
 If a custom function is not created it will activate the project by adding
-the project_directory to sys.path and setting $DJANOG_SETTINGS_MODULE to
+the django_project_directory to sys.path and setting $DJANOG_SETTINGS_MODULE to
 project_name.settings.
 
 ==============================================================================
