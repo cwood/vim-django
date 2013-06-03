@@ -4,7 +4,7 @@ function! django#apps#create_app(app_name, ...)
     let pypath = split(a:app_name , '\.')
     let new_app = pypath[-1]
 
-    exec 'chdir '.g:project_directory
+    exec 'chdir '.g:django_project_directory
     for app in pypath
 
         if app == new_app

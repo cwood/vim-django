@@ -1,3 +1,3 @@
 function! django#is_active(...) abort
-    return exists('g:project_name') && exists('g:project_directory')
+    return exists('g:django_project_name') && exists('g:django_project_directory')
 endfunction

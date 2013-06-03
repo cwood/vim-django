@@ -76,7 +76,7 @@ def _get_directories(path):
     return directories
 
 prefix = vim.eval('a:prefix')
-project_root = vim.eval('g:project_directory')
+project_root = vim.eval('g:django_project_directory')
 
 prefix_path = create_prefix_paths(prefix)
 possible_paths = create_possible_paths(project_root, prefix_path)
