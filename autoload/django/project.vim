@@ -21,11 +21,6 @@ function! django#project#activate(project)
 
     let settings = split(globpath(g:django_projects, file_regex))[0]
 
-    if !exists(l:settings)
-        echo l:settings
-        echoerr "Project " . a:project . " was not found!"
-    endif
-
     if isdirectory(l:settings)
         let g:django_project_directory = fnamemodify(l:settings, ':h:h')
     else
