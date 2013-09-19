@@ -4,12 +4,12 @@ function! django#apps#create_app(app_name, ...)
     let pypath = split(a:app_name , '\.')
     let new_app = pypath[-1]
 
-    exec 'chdir '.g:django_project_directory
+    exec 'chdir ' . g:django_project_directory
     for app in pypath
 
         if app == new_app
-            silent exec '! django-admin.py startapp '.new_app
-            echo "Created new app at ".join(pypath, '.')
+            call django#commands#manage('startapp '. app)
+            echo "Created new app at ". join(pypath, '.')
             break
         endif
 
