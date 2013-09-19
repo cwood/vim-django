@@ -4,6 +4,6 @@ function! django#commands#manage(command, ...)
     execute '!python '.manage.' '.a:command
 endfunction
 
-function! django#commands#admin(comamnd, ...)
-    execute '!django-admin.py '.a:command
+function! django#commands#admin(command, ...)
+    execute '! django-admin.py '. a:command
 endfunction
