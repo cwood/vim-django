@@ -103,13 +103,21 @@ endfunction
 
 function! django#completions#projectscomplete(prefix, ...)
 
-    if exists('g:django_project_container')
-        let file_regex = '*/'.g:django_project_container.'/*/settings*'
-    else
-        let file_regex = '**/settings*'
+    if !exists('g:django_projects_search_exp')
+        let g:django_projects_search_exp = '**'  " Recursivly look down for all settings
+        return
     endif
 
-    let all_settings_files = split(globpath(g:django_projects, file_regex))
+    let search_exp = g:django_projects_search_exp . "/*/settings*"
+
+    if !exists('g:django_projects')
+        echoerr "No django projects directory set. Please set one"
+        return
+    endif
+
+    echo search_exp
+
+    let all_settings_files = split(globpath(g:django_projects, search_exp))
     let all_projects = []
 
     for setting_file in all_settings_files

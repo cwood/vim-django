@@ -13,18 +13,28 @@ endif
 
 function! django#project#activate(project)
 
-    if exists('g:django_project_container')
-        let file_regex = '*/'.g:django_project_container.'/'.a:project.'/settings*'
-    else
-        let file_regex = a:project.'/settings*'
+    if !exists('g:django_projects_search_exp')
+        let g:django_projects_search_exp = '**'  " Recursivly look down for all settings
     endif
 
-    let settings = split(globpath(g:django_projects, file_regex))[0]
+    let search_exp = g:django_projects_search_exp . "/" . a:project . "/settings*"
 
-    if isdirectory(l:settings)
-        let g:django_project_directory = fnamemodify(l:settings, ':h:h')
+    if !exists('g:django_projects')
+        echoerr "No django projects directory set. Please set one"
+        return
+    endif
+
+    let settings_found = split(globpath(g:django_projects, search_exp))[0]
+
+    if len(settings_found) == 0
+        echoerr "No settings file found"
+        return
+    endif
+
+    if isdirectory(l:settings_found)
+        let g:django_project_directory = fnamemodify(l:settings_found, ':h:h')
     else
-        let g:django_project_directory = fnamemodify(l:settings, ':p:h:h')
+        let g:django_project_directory = fnamemodify(l:settings_found, ':p:h:h')
     endif
 
     let g:django_project_name = a:project
@@ -46,6 +56,8 @@ function! django#project#activate(project)
         else
             echoerr "NERDTree not installed. Can not open."
         endif
+    else
+        exec "cd " . g:django_project_directory
     endif
 
     exec 'set path+='.expand(g:django_project_directory)

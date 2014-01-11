@@ -44,11 +44,16 @@ corresponding virtual environment. The virtual environment must start with
 the same name as your project does. An example being: colinbits is my django
 project; this will activate the colinbits.com virtualenv.
 
-*g:django_project_container* is used when autocompleting django projects.
-If you use a complex project organization structure. This can come in handy
-for making autocompletions faster. For example. If you have a
-project_name.something/source/django_project. You could set
-g:django_projects_container and it will look for your source directory.
+*g:django_project_container* this is now depreicated. Please use
+|g:django_projects_search_exp| this is a better solution and allows you a more
+powerfull search.
+
+*g:django_projects_search_exp* is used to better filter sub projects. By
+default this does "**" so for example. The default search looks like this.
+
+"**/<project-name>/settings*", this should recursivly look down for a project
+directory and a settings directory/file. If there is one there it will be
+picked up. So if you have just default django projects this should work fine.
 
 
 ==============================================================================
