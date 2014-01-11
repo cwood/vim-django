@@ -6,6 +6,39 @@ for the ``django-admin.py``, your projects ``manage.py`` and some helper
 commands. It also has some quick ways to find templates, edit related files
 in a app, create new apps, and help manage django while using ViM.
 
+Installing
+-------------------------------------------------------------------------------
+
+I recommend using pathogen or vundle to install this script. Else, you can
+put the ``django.vim`` in the plug-ins directory. This script does require
+python to be compiled in.
+
+You can check by doing :version and looking for `+python`
+
+Example .vimrc
+------------------------------------------------------------------------------
+```vim
+let g:django_projects = '~/Projects' "Sets all projects under project
+let g:django_activate_virtualenv = 1 "Try to activate the associated virtualenv
+let g:django_activate_nerdtree = 1 "Try to open nerdtree at the project root.
+```
+
+
+Advanced search for projects
+-------------------------------------------------------------------------------
+
+If you want more advanced searching for your projects or the default is to slow
+for you to use. You can add more advanced filtering.
+
+For example I use a source directory in each of my projects. So I dont want it to
+look through each of my virtualenv directorys, assets, or other project files.
+
+So what we can do is this
+
+`g:django_projects_search_exp = '*/source'` this will let us look in the source
+folder for each project. You can tweak this to be what you want. This just uses
+the vim file path filters.
+
 
 Commands
 -------------------------------------------------------------------------------
@@ -68,21 +101,6 @@ VirtualEnv:
     env that starts with the same name.
 
 
-Installing
--------------------------------------------------------------------------------
-
-I recommend using pathogen or vundle to install this script. Else, you can
-put the ``django.vim`` in the plug-ins directory. This script does require
-python to be compiled in.
-
-Example .vimrc
-------------------------------------------------------------------------------
-```vim
-let g:django_projects = '~/Projects' "Sets all projects under project
-let g:django_project_container = 'source' "Inside of these folders look for source
-let g:django_activate_virtualenv = 1 "Try to activate the associated virtualenv
-let g:django_activate_nerdtree = 1 "Try to open nerdtree at the project root.
-```
 
 Screen shots
 -------------------------------------------------------------------------------
