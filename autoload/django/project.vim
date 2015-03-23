@@ -1,12 +1,25 @@
+function django#utils#truthy(setting_name)
+    if exists(a:setting_name) && eval(a:setting_name) == 1
+        return 1
+    else
+        return 0
+endfunc
+
+
 if !exists('*ActivateProject')
 function! ActivateProject(project)
 python << EOF
 import vim
 import sys
 import os
+import django
 
 os.environ['DJANGO_SETTINGS_MODULE'] = vim.eval('a:project')+'.settings'
 sys.path.append(vim.eval('g:django_project_directory'))
+try:
+    django.setup()
+except AttributeError:
+    pass
 EOF
 endfunction
 endif
@@ -39,8 +52,8 @@ function! django#project#activate(project)
 
     let g:django_project_name = a:project
 
-    if exists('g:django_activate_virtualenv')
-        if exists('g:virtualenv_loaded') && g:django_activate_virtualenv == 1
+    if exists('g:django_activate_virtualenv') && exists('g:virtualenv_loaded')
+        if g:django_activate_virtualenv == 1
             for env in virtualenv#names(a:project)
                 call virtualenv#activate(env)
                 break
