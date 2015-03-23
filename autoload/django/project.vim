@@ -1,11 +1,3 @@
-function django#utils#truthy(setting_name)
-    if exists(a:setting_name) && eval(a:setting_name) == 1
-        return 1
-    else
-        return 0
-endfunc
-
-
 if !exists('*ActivateProject')
 function! ActivateProject(project)
 python << EOF
